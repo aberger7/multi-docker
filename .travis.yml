@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t anberger/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t aberger7/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true anberger/react-test npm test
+  - docker run -e CI=true aberger7/react-test npm test
 
 after_success:
-  - docker build -t anberger/multi-client ./client
-  - docker build -t anberger/multi-nginx ./nginx
-  - docker build -t anberger/multi-server ./server
-  - docker build -t anberger/multi-worker ./worker
+  - docker build -t aberger7/multi-client ./client
+  - docker build -t aberger7/multi-nginx ./nginx
+  - docker build -t aberger7/multi-server ./server
+  - docker build -t aberger7/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push anberger/multi-client
-  - docker push anberger/multi-nginx
-  - docker push anberger/multi-server
-  - docker push anberger/multi-worker
+  - docker push aberger7/multi-client
+  - docker push aberger7/multi-nginx
+  - docker push aberger7/multi-server
+  - docker push aberger7/multi-worker
